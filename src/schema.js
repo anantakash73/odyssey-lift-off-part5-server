@@ -3,11 +3,14 @@ const { gql } = require("apollo-server");
 const typeDefs = gql `
   type Query {
     "Query to get tracks array for the homepage grid"
-    tracksForHome: [Track!]!
-    "Fetch a specific track, provided a track's ID"
-    track(id: ID!): Track!
-    "Fetch a specific module, provided a module's ID"
-    module(id: ID!): Module!
+    # tracksForHome: [Track!]!
+    # "Fetch a specific track, provided a track's ID"
+    # track(id: ID!): Track!
+    # "Fetch a specific module, provided a module's ID"
+    # module(id: ID!): Module!
+
+    getPrice(symbols: [String!]): [Price!]!
+    getCloseForDate(symbols: [String!], date:String): [Price]
   }
 
   type Mutation {
@@ -24,6 +27,11 @@ const typeDefs = gql `
     message: String!
     "Newly updated track after a successful mutation"
     track: Track
+  }
+
+  type Price {
+    price: Float!
+    symbol: String!
   }
 
   "A track is a group of Modules that teaches about a specific topic"

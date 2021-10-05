@@ -2,6 +2,7 @@ const { ApolloServer } = require("apollo-server");
 const typeDefs = require("./schema");
 const resolvers = require("./resolvers");
 const TrackAPI = require("./datasources/track-api");
+const CompoundAPI = require("./datasources/compound-api");
 
 async function startApolloServer(typeDefs, resolvers) {
     const server = new ApolloServer({
@@ -10,6 +11,7 @@ async function startApolloServer(typeDefs, resolvers) {
         dataSources: () => {
             return {
                 trackAPI: new TrackAPI(),
+                compoundAPI: new CompoundAPI(),
             };
         },
     });
